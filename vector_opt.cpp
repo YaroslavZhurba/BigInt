@@ -55,7 +55,7 @@ void vector_opt::reserve(size_t capacity) {
     _capacity = capacity;
     if (_is_ptr) {
         auto p = data.ptr;
-        data.ptr.reset(new ui[capacity]);
+        data.ptr.reset(new ui[capacity],D());
         std::copy(p.get(), p.get() + _size, data.ptr.get());
     } else {
         _is_ptr = true;
@@ -88,7 +88,7 @@ vector_opt::ui* vector_opt::copy_and_get() {
     }
     auto new_cap = std::min(get_capacity(), _size * ENLARGE);
     _capacity = new_cap;
-    data.ptr.reset(new ui[new_cap]);
+    data.ptr.reset(new ui[new_cap],D());
     std::copy(_real_data, _real_data + _size, data.ptr.get());
     return _real_data = data.ptr.get();
 }
