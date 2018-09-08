@@ -61,11 +61,18 @@ private:
     size_t _capacity;
     ui *_real_data;
 
+
+
 //    struct big_data {
 //        size_t capacity;
 //        std::shared_ptr<ui> ptr;
 //    };
 
+    struct D {
+        void operator()(ui* p) const {
+            delete[] p;
+        }
+    };
     union union_data {
         ui small[SMALL_SIZE]{};
 //        big_data big;

@@ -8,9 +8,10 @@
 vector_opt::~vector_opt() {
     if (_is_ptr) {
         _is_ptr = false;
-        data.ptr.reset();
+        data.ptr.reset(); ////???
     }
 }
+
 vector_opt::vector_opt()
         : _is_ptr(false), _size(0), _capacity(4), _real_data(data.small) {}
 
@@ -58,9 +59,9 @@ void vector_opt::reserve(size_t capacity) {
         std::copy(p.get(), p.get() + _size, data.ptr.get());
     } else {
         _is_ptr = true;
-        auto new_data = new ui[capacity];
+        auto new_data = new ui[capacity]; ////
         std::copy(_real_data, _real_data + _size, new_data);
-        new(&data.ptr)std::shared_ptr<ui>(new_data);
+        new(&data.ptr)std::shared_ptr<ui>(new_data,D());
     }
     _real_data = data.ptr.get();
 }

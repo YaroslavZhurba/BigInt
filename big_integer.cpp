@@ -47,7 +47,7 @@ big_integer::big_integer(std::string str)
     reduce();
 }
 
-big_integer::~big_integer() {
+big_integer::~big_integer() { ////????
     number.clear();
 }
 
